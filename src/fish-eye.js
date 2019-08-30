@@ -35,9 +35,9 @@ export function FishEyeItem(props) {
   );
 }
 
-function getScaleSize(index, sum) {
+function getScaleSize(index, multiple = 0.6) {
   const x = index;
-  return 0.6 * Math.exp(-1 * x * x);
+  return multiple * Math.exp(-1 * x * x);
 }
 
 export function FishEye(props) {
@@ -45,7 +45,8 @@ export function FishEye(props) {
     'selectedOne',
   );
 
-  const { data } = props;
+  const { data, multiple = 0.6 } = props;
+  
   let selectedIndex = props.data
     .map(item => item.key)
     .indexOf(selectedOne);
@@ -66,7 +67,7 @@ export function FishEye(props) {
           data={item}
           scale={getScaleSize(
             index - selectedIndex,
-            data.length,
+            multiple,
           )}
           offset={index - selectedIndex}
           isSelected={selectedOne === item.key}
