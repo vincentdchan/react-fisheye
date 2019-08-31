@@ -4,7 +4,7 @@
 React-fisheye is a react component implements fisheye effect.
 
 ![](./public/example-1.gif)
-![](./public/example-2.gif)
+![](./public/example-3.gif)
 
 # Installation
 

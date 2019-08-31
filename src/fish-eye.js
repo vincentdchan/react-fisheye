@@ -10,7 +10,9 @@ export function FishEyeItem(props) {
     props.onMouseOver(e);
   };
 
-  let translateY = props.scale * nor(props.offset);
+  const translateOffset = props.scale * nor(props.offset);
+
+  const translateKey = props.mode === 'horizontal' ? 'translateX' : 'translateY';
 
   return (
     <div
@@ -19,7 +21,7 @@ export function FishEyeItem(props) {
       data-offset={props.offset}
       style={{
         transform: `scale(${props.scale +
-          1}) translateY(${translateY * 10}px)`,
+          1}) ${translateKey}(${translateOffset * 10}px)`,
         transformOrigin: props.mode === 'horizontal' ? '50% 100%' : '0% 50%',
       }}
       onMouseOver={handleMouseOver}
