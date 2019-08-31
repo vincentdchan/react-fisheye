@@ -1,13 +1,14 @@
 
 # React Fisheye 鱼眼效果
 
-React-fisheye is a react component which implements fisheye effect.
+React-fisheye is a react component implements fisheye effect.
 
 ![](./public/example-1.gif)
+![](./public/example-2.gif)
 
 # Installation
 
-Using npm/yarn to install react-fisheye.
+Use npm/yarn to install react-fisheye.
 
 ```
 yarn add react-fisheye
@@ -15,8 +16,15 @@ yarn add react-fisheye
 
 # Usage
 
-`data` property should be an array of data objects, which should container
-`key` property.
+`data` property should be an array of data objects. Data item should
+contain 'key' property.
+
+| Property | Type | Default |
+| -------- | ---- | ------- |
+| data | object[] | undefined |
+| multiple | number | 1 |
+| mode | "vertical" \| "horizontal" | "vertical" |
+| render | function | undefined |
 
 ```javascript
 const list = [

@@ -7,28 +7,22 @@ function nor(num) {
 
 export function FishEyeItem(props) {
   const handleMouseOver = e => {
-    // console.log("mouse over");
     props.onMouseOver(e);
-    // console.log(this.containerRef.current);
-  };
-
-  const handleMouseOut = e => {
-    // console.log("mouse out");
   };
 
   let translateY = props.scale * nor(props.offset);
 
   return (
     <div
+      className="react-fish-eye-item"
       data-scale={props.scale}
       data-offset={props.offset}
       style={{
         transform: `scale(${props.scale +
           1}) translateY(${translateY * 10}px)`,
-        transformOrigin: '0% 50%',
+        transformOrigin: props.mode === 'horizontal' ? '50% 100%' : '0% 50%',
       }}
       onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
     >
       {props.children}
     </div>
@@ -40,12 +34,23 @@ function getScaleSize(index, multiple = 0.6) {
   return multiple * Math.exp(-1 * x * x);
 }
 
+function getContainerStyle(mode = 'vertical') {
+
+  if (mode === 'horizontal') {
+    return {
+      display: 'flex',
+    };
+  }
+
+  return {};
+}
+
 export function FishEye(props) {
   const [selectedOne, setSelectedItem] = useState(
     'selectedOne',
   );
 
-  const { data, multiple = 0.6 } = props;
+  const { data, multiple = 0.6, mode } = props;
   
   let selectedIndex = props.data
     .map(item => item.key)
@@ -60,7 +65,11 @@ export function FishEye(props) {
   }
 
   return (
-    <div onMouseOut={handleContainerMouseOut}>
+    <div
+      className="react-fisheye-container"
+      onMouseOut={handleContainerMouseOut}
+      style={getContainerStyle(mode)}
+    >
       {data.map((item, index) => (
         <FishEyeItem
           key={item.key}
@@ -72,6 +81,7 @@ export function FishEye(props) {
           offset={index - selectedIndex}
           isSelected={selectedOne === item.key}
           onMouseOver={() => setSelectedItem(item.key)}
+          mode={mode}
         >
           {props.render(item, index)}
         </FishEyeItem>
