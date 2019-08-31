@@ -1,6 +1,8 @@
 
 # React Fisheye 鱼眼效果
 
+[![npm version](https://badge.fury.io/js/react-fisheye.svg)](https://badge.fury.io/js/react-fisheye)
+
 React-fisheye is a react component implements fisheye effect.
 
 ![](./public/example-1.gif)
